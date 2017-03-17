@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fynbus_Flexbus
+namespace Fynbus_Flexbus.Opbevaring
 {
-    public class Class1
+    class Import
     {
     }
 }
