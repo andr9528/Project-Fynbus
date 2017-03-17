@@ -10,7 +10,6 @@ namespace Fynbus_Flexbus
     {
         public List<Rute> Ruter;
         public List<Bydder> Bydder;
-        public List<Tilbud> Tilbud;
 
         static readonly Lager lager = new Lager();
 
@@ -18,15 +17,15 @@ namespace Fynbus_Flexbus
         {
             Ruter = new List<Rute>();
             Bydder = new List<Bydder>();
-            Tilbud = new List<Tilbud>();
         }
         public static Lager HentUdgave()
         {
             return lager;
         }
-        public void HentLister(List<Rute> ruter, List<Bydder> bydder, List<Tilbud> tilbud)
+        public void HentLister(List<Rute> ruter, List<Bydder> bydder)
         {
-
+            Ruter = ruter;
+            Bydder = bydder;
         }
     }
 }

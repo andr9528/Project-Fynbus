@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Fynbus_Flexbus.Opbevaring
 {
-    class Import
+    public class Import
     {
+
     }
 }
