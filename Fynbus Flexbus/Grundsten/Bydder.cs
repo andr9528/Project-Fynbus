@@ -8,6 +8,7 @@ namespace Fynbus_Flexbus
         public string BydderID { get; set; }
         public string Navn { get; set; }
         public string Mail { get; set; }
+        public string Firma { get; set; }
         public int MaxAntalVogne
         {
             get
@@ -21,10 +22,11 @@ namespace Fynbus_Flexbus
             } }
         
 
-        public Bydder(string bydderID, string navn, string mail)
+        public Bydder(string bydderID, string navn, string firma,  string mail)
         {
             BydderID = bydderID;
             Navn = navn;
+            Firma = firma;
             Mail = mail;
         }
     }

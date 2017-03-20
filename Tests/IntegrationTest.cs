@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Tests
 {
     [TestClass]
-    public class GrundstenTests
+    public class IntegrationTest
     {
         List<Bydder> listBydder = new List<Bydder>();
         List<Rute> listRuter = new List<Rute>();
@@ -30,7 +30,7 @@ namespace Tests
             Tilbud tilbud4 = new Tilbud("4", 1, 2, bydder4); // plads 2
             Tilbud tilbud5 = new Tilbud("5", 1, 2, bydder5); // plads 1
 
-            Tilbud[] tilbud = new Tilbud[] { tilbud1, tilbud2, tilbud3, tilbud4,tilbud5 };
+            Tilbud[] tilbud = new Tilbud[] { tilbud1, tilbud2, tilbud3, tilbud4, tilbud5 };
             Bydder[] bydder = new Bydder[] { bydder1, bydder2, bydder3, bydder4, bydder5 };
 
             rute1.Tilbud.AddRange(tilbud);
@@ -38,27 +38,16 @@ namespace Tests
             listRuter.Add(rute1);
             listBydder.AddRange(bydder);
         }
-
-        //[TestMethod]
-        //public void TestSortering1()
-        //{
-        //    rute1.SorterTilbud();
-
-        //    Assert.AreEqual(5, rute1.Tilbud.Count);
-        //}
-        //[TestMethod]
-        //public void TestSortering2()
-        //{
-        //    rute1.SorterTilbud();
-
-        //    Assert.AreEqual(1, rute1.Tilbud[0].TimePris);
-        //}
-        //[TestMethod]
-        //public void TestSortering3()
-        //{
-        //    rute1.SorterTilbud();
-
-        //    Assert.AreEqual(bydder4, rute1.Tilbud[2].Bydder);
-        //}
+        [TestCleanup]
+        public void Clean()
+        {
+            foreach (Rute rute in listRuter)
+            {
+                rute.Tilbud.Clear();
+                rute.Top3.Clear();
+            }
+            listBydder.Clear();
+            listRuter.Clear();
+        }
     }
 }
