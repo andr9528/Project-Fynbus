@@ -12,7 +12,7 @@ namespace Fynbus_Flexbus
         public List<Tilbud> Tilbud = new List<Tilbud>();
         public List<Tilbud> Top3 = new List<Tilbud>();
 
-        public int RuteNummer { get; set; }
+        public int RuteNummer { get; set; } // Garantivognsnummer
         public Tilbud FørstePlads { get
             {
                 UdtagTop3();
