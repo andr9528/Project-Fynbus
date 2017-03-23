@@ -5,7 +5,7 @@ namespace Fynbus_Flexbus
     public class Bydder
     {
         public List<Vogn> Vogne = new List<Vogn>();
-        public string BydderID { get; set; }
+        public string BydderID { get; set; } // seqno
         public string Navn { get; set; }
         public string Mail { get; set; }
         public string Firma { get; set; }

@@ -8,20 +8,25 @@ namespace Fynbus_Flexbus.Opbevaring
 {
     public class Import
     {
-        public List<Bydder> Bydder = new List<Bydder>();
-        public List<Tilbud> Tilbud = new List<Tilbud>();
+        public List<Bydder> Bydderne = new List<Bydder>();
+        public List<Tilbud> Tilbudene = new List<Tilbud>();
         public List<Rute> Ruter = new List<Rute>();
-
 
         /*
          * Tjekker listen af ruter igennem for at om der allerede eksistere en rute med dette ruteNummer
          * Retunere falsk, hvis der ikke er nogle med dette ruteNummer, og retunere sandt hvis der allerede er en rute med dette ruteNummer
          *      Tager imod en rute, hvis ruteNummer den bruger til at tjekke med
          */
-        private bool TjekOmRuteEksistere(Rute rute)
+        private bool TjekOmRuteEksistere(Rute ruten)
         {
             bool retur = false;
-
+            foreach (Rute rute in Ruter)
+            {
+                if (rute.RuteNummer == ruten.RuteNummer)
+                {
+                    retur = true;
+                }
+            }
             return retur;
         }
         /*
@@ -29,10 +34,16 @@ namespace Fynbus_Flexbus.Opbevaring
          * Retunere falsk, hvis der ikke er nogle med dette ID, og retunere sandt hvis der allerede er et tilbud med ID'en
          *      Tager imod en bydder, hvis ID den bruger til at tjekke med.
          */
-        private bool TjekOmBydderEksistere(Bydder bydder)
+        private bool TjekOmBydderEksistere(Bydder bydderen)
         {
             bool retur = false;
-
+            foreach (Bydder bydder in Bydderne)
+            {
+                if (bydder.BydderID == bydderen.BydderID)
+                {
+                    retur = true;
+                }
+            }
             return retur;
         }
         /*
@@ -40,10 +51,16 @@ namespace Fynbus_Flexbus.Opbevaring
          * Retunere falsk, hvis der ikke er nogle med dette ID, og retunere sandt hvis der allerede er et tilbud med ID'en
          *      Tager imod et tillbud, hvis ID den bruger til at tjekke med.
          */
-        private bool TjekOmTilbudEksistere(Tilbud tilbud)
+        private bool TjekOmTilbudEksistere(Tilbud tilbudet)
         {
             bool retur = false;
-
+            foreach (Tilbud tilbud in Tilbudene)
+            {
+                if (tilbud.TilbudID == tilbudet.TilbudID)
+                {
+                    retur = true;
+                }
+            }
             return retur;
         }
         /*
@@ -52,7 +69,16 @@ namespace Fynbus_Flexbus.Opbevaring
          */
         private void BindTilbudTilRuter()
         {
-
+            foreach (Rute rute in Ruter)
+            {
+                foreach (Tilbud tilbud in Tilbudene)
+                {
+                    if (rute.RuteNummer == tilbud.RuteNummer)
+                    {
+                        rute.Tilbud.Add(tilbud);
+                    }
+                }
+            }
         }
         /*
          * Opretter vognene som hver bydder har udfra informationerne i filen med bydder
