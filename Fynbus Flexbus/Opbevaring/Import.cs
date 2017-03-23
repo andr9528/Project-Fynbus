@@ -8,7 +8,7 @@ namespace Fynbus_Flexbus.Opbevaring
 {
     public class Import
     {
-        public List<Bydder> Bydderne = new List<Bydder>();
+        public List<Byder> Byderne = new List<Byder>();
         public List<Tilbud> Tilbudene = new List<Tilbud>();
         public List<Rute> Ruter = new List<Rute>();
 
@@ -34,12 +34,12 @@ namespace Fynbus_Flexbus.Opbevaring
          * Retunere falsk, hvis der ikke er nogle med dette ID, og retunere sandt hvis der allerede er et tilbud med ID'en
          *      Tager imod en bydder, hvis ID den bruger til at tjekke med.
          */
-        private bool TjekOmBydderEksistere(Bydder bydderen)
+        private bool TjekOmByderEksistere(Byder byderen)
         {
             bool retur = false;
-            foreach (Bydder bydder in Bydderne)
+            foreach (Byder byder in Byderne)
             {
-                if (bydder.BydderID == bydderen.BydderID)
+                if (byder.ByderID == byderen.ByderID)
                 {
                     retur = true;
                 }
@@ -84,7 +84,7 @@ namespace Fynbus_Flexbus.Opbevaring
          * Opretter vognene som hver bydder har udfra informationerne i filen med bydder
          *      Tager imod en bydderID, for at finde hvilken linje den skal arbejde med, samt filplaceringen for bydderne.
          */
-        private List<Vogn> ImportVogneForBydder(string bydderID, string filPlaceringForBydder)
+        private List<Vogn> ImportVogneForByder(string byderID, string filPlaceringForByder)
         {
             List<Vogn> returListe = new List<Vogn>();
 
@@ -100,7 +100,7 @@ namespace Fynbus_Flexbus.Opbevaring
         /*
          * Opretter byddere udfra de unike bydder der er i filen med stamoplysninger
          */
-        private void ImportBydder(string filPlaceringForBydder)
+        private void ImportByder(string filPlaceringForByder)
         {
 
         }
@@ -114,10 +114,10 @@ namespace Fynbus_Flexbus.Opbevaring
         /*
          * Køre alle metoderne i korrekt rækkefølge, når der initieres en ny import
          */
-        public Import(string filPlaceringForTilbud, string filPlaceringForBydder)
+        public Import(string filPlaceringForTilbud, string filPlaceringForByder)
         {
             ImportRuter(filPlaceringForTilbud);
-            ImportBydder(filPlaceringForBydder);
+            ImportByder(filPlaceringForByder);
             ImportTilbud(filPlaceringForTilbud);
             BindTilbudTilRuter();
         }

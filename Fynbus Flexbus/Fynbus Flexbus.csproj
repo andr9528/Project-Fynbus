@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Grundsten\Bydder.cs" />
+    <Compile Include="Grundsten\Byder.cs" />
     <Compile Include="Grundsten\Rute.cs" />
     <Compile Include="Grundsten\Tilbud.cs" />
     <Compile Include="Opbevaring\Import.cs" />

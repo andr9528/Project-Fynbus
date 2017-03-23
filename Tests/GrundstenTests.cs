@@ -8,14 +8,14 @@ namespace Tests
     [TestClass]
     public class GrundstenTests
     {
-        List<Bydder> listBydder = new List<Bydder>();
+        List<Byder> listBydder = new List<Byder>();
         List<Rute> listRuter = new List<Rute>();
 
-        Bydder bydder1 = new Bydder("1", "André", "Skole", "stuff1@mail.com");
-        Bydder bydder2 = new Bydder("2", "Peter", "Skole", "stuff2@mail.com");
-        Bydder bydder3 = new Bydder("3", "Simon", "Skole", "stuff3@mail.com");
-        Bydder bydder4 = new Bydder("4", "Christian", "Skole", "stuff4@mail.com");
-        Bydder bydder5 = new Bydder("5", "Nicolai", "Skole", "stuff5@mail.com");
+        Byder bydder1 = new Byder("1", "André", "Skole", "stuff1@mail.com");
+        Byder bydder2 = new Byder("2", "Peter", "Skole", "stuff2@mail.com");
+        Byder bydder3 = new Byder("3", "Simon", "Skole", "stuff3@mail.com");
+        Byder bydder4 = new Byder("4", "Christian", "Skole", "stuff4@mail.com");
+        Byder bydder5 = new Byder("5", "Nicolai", "Skole", "stuff5@mail.com");
 
         Rute rute1;
 
@@ -31,7 +31,7 @@ namespace Tests
             Tilbud tilbud5 = new Tilbud("5", 1, 2, bydder5); // plads 1
 
             Tilbud[] tilbud = new Tilbud[] { tilbud1, tilbud2, tilbud3, tilbud4,tilbud5 };
-            Bydder[] bydder = new Bydder[] { bydder1, bydder2, bydder3, bydder4, bydder5 };
+            Byder[] bydder = new Byder[] { bydder1, bydder2, bydder3, bydder4, bydder5 };
 
             rute1.Tilbud.AddRange(tilbud);
 

@@ -2,10 +2,10 @@
 
 namespace Fynbus_Flexbus
 {
-    public class Bydder
+    public class Byder
     {
         public List<Vogn> Vogne = new List<Vogn>();
-        public string BydderID { get; set; } // seqno
+        public string ByderID { get; set; } // seqno
         public string Navn { get; set; }
         public string Mail { get; set; }
         public string Firma { get; set; }
@@ -22,9 +22,9 @@ namespace Fynbus_Flexbus
             } }
         
 
-        public Bydder(string bydderID, string navn, string firma,  string mail)
+        public Byder(string byderID, string navn, string firma,  string mail)
         {
-            BydderID = bydderID;
+            ByderID = byderID;
             Navn = navn;
             Firma = firma;
             Mail = mail;
