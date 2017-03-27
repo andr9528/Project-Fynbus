@@ -6,8 +6,9 @@
         public int Antal { get; set; }
         public string Ejer { get; set; }
 
-        public Vogn(string ejer, int antal = 1)
+        public Vogn(string type, string ejer, int antal = 1)
         {
+            Type = type;
             Ejer = ejer;
             Antal = antal;
         }

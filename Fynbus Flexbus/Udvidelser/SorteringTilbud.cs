@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Fynbus_Flexbus
 {
-    public class Udvidelser : IComparer<Tilbud>
+    public class SorteringTilbud : IComparer<Tilbud>
     {
         public int Compare(Tilbud o1, Tilbud o2)
         {

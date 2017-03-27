@@ -53,12 +53,13 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GrundstenTests.cs" />
+    <Compile Include="ImportTests.cs" />
     <Compile Include="IntegrationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fynbus Flexbus\Fynbus Flexbus.csproj">
-      <Project>{c3b5de8c-bf9e-4ee3-bd1e-e157e5848bda}</Project>
+      <Project>{C3B5DE8C-BF9E-4EE3-BD1E-E157E5848BDA}</Project>
       <Name>Fynbus Flexbus</Name>
     </ProjectReference>
   </ItemGroup>

@@ -68,7 +68,7 @@ namespace Fynbus_Flexbus
 
         public void SorterTilbud() // Skal kun stå til public mens den bliver testet, ellers skal den stå til privat
         {
-            IComparer<Tilbud> sortering = new Udvidelser(); 
+            IComparer<Tilbud> sortering = new SorteringTilbud(); 
 
             Tilbud.Sort(sortering);
 
