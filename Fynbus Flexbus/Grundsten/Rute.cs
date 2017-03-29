@@ -13,6 +13,20 @@ namespace Fynbus_Flexbus
         public List<Tilbud> Top3 = new List<Tilbud>();
 
         public int RuteNummer { get; set; } // Garantivognsnummer
+        public bool HarVinder
+        {
+            get
+            {
+                if (Vinder == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            } }
+        public Tilbud Vinder { get; set; }
         public Tilbud FørstePlads { get
             {
                 UdtagTop3();

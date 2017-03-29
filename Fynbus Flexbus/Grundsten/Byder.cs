@@ -9,6 +9,7 @@ namespace Fynbus_Flexbus
         public string Navn { get; set; }
         public string Mail { get; set; }
         public string Firma { get; set; }
+        public int Vundne { get; set; }
         public int MaxAntalVogne
         {
             get

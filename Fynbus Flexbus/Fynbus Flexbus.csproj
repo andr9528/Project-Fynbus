@@ -44,11 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bearbejdning\Logik.cs" />
     <Compile Include="Grundsten\Byder.cs" />
     <Compile Include="Grundsten\Rute.cs" />
     <Compile Include="Grundsten\Tilbud.cs" />
-    <Compile Include="Opbevaring\Import.cs" />
-    <Compile Include="Opbevaring\Lager.cs" />
+    <Compile Include="Bearbejdning\Import.cs" />
+    <Compile Include="Bearbejdning\Lager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Grundsten\Vogn.cs" />
     <Compile Include="Udvidelser\SorteringTilbud.cs" />
