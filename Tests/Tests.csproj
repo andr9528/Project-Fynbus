@@ -55,6 +55,7 @@
     <Compile Include="GrundstenTests.cs" />
     <Compile Include="ImportTests.cs" />
     <Compile Include="IntegrationTest.cs" />
+    <Compile Include="LogikTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

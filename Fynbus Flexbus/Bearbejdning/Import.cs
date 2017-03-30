@@ -9,9 +9,10 @@ namespace Fynbus_Flexbus
 {
     public class Import
     {
-        List<Byder> Byderne = new List<Byder>();
-        List<Tilbud> Tilbudene = new List<Tilbud>();
-        List<Rute> Ruter = new List<Rute>();
+        // fjern public når der ikke testes
+        public List<Byder> Byderne = new List<Byder>();
+        public List<Tilbud> Tilbudene = new List<Tilbud>();
+        public List<Rute> Ruter = new List<Rute>();
         
         /*
          * Tjekker listen af ruter igennem for at om der allerede eksistere en rute med dette ruteNummer
@@ -171,8 +172,7 @@ namespace Fynbus_Flexbus
                 string firma = læs[y].ToString().Split(';')[2];
                 string mail = læs[y].ToString().Split(';')[3];
 
-                Byder byder = new Byder(byderID, navn, firma, mail);
-                byder.Vogne.AddRange(ImportVogneForByder(byderID, filPlaceringForByder));
+                Byder byder = new Byder(byderID, navn, firma, mail, ImportVogneForByder(byderID, filPlaceringForByder));
 
                 if (TjekOmByderEksistere(byder) == false)
                 {
