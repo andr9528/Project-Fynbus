@@ -12,6 +12,7 @@ namespace Fynbus_Flexbus
         public int Førstepladser { get; set; }
         public int Andenpladser { get; set; }
         public int Tredjepladser { get; set; }
+        public int AntalBud { get; set; }
         public int MaxAntalVogne
         {
             get

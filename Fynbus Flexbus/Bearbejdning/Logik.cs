@@ -14,9 +14,11 @@ namespace Fynbus_Flexbus
         // fjern public når der ikke testes
         public List<Rute> Ruter = new List<Rute>();
         public List<Byder> Byderne = new List<Byder>();
-        private int TotalMaxAntalVogne
+        public int TotalMaxAntalVogne
         {
-            get { int retur = 0;
+            get
+            {
+                int retur = 0;
 
                 foreach (var byder in Byderne)
                 {
@@ -26,43 +28,72 @@ namespace Fynbus_Flexbus
                 return retur;
             }
         }
+        public int TotalMaxAntalUdfyldteRuter
+        {
+            get
+            {
+                int retur = 0;
 
+                foreach (var byder in Byderne)
+                {
+                    if (byder.AntalBud > byder.MaxAntalVogne)
+                    {
+                        retur += byder.MaxAntalVogne;
+                    }
+                    else
+                    {
+                        retur += byder.AntalBud;
+                    }
+                }
+                return retur;
+            }
+        }
+            
         public Logik(string filPlaceringForTilbud, string filPlaceringForByder)
         {
             Import(filPlaceringForTilbud, filPlaceringForByder);
             SorterRuter();
 
-            TælFørstePladser();
-            UpdaterBydereITilbud();
+            TælTilbudPerByder();
+            
             FindVinderFra1Plads();
-
-            TælAndenpladser();
-            UpdaterBydereITilbud();
             FindVinderFra2Plads();
-
-            TælTredjepladser();
-            UpdaterBydereITilbud();
             FindVinderFra3Plads();
+            FindRestVindere();
             
             SendListerTilLager();
         }
 
-        private void SorterRuter()
+        private void TælTilbudPerByder()
         {
-            IComparer<Rute> sortering = new SorteringRute();
-
-            Ruter.Sort(sortering);
+            foreach (var byder in Byderne)
+            {
+                foreach (var rute in Ruter)
+                {
+                    foreach (var tilbud in rute.Tilbud)
+                    {
+                        if (byder.Navn == tilbud.Byder.Navn
+                            && byder.Firma == tilbud.Byder.Firma
+                            && byder.Mail == tilbud.Byder.Mail)
+                        {
+                            byder.AntalBud++;
+                        }
+                    }
+                }
+            }
+            UpdaterBydereITilbud();
         }
 
-        private void FindVinderFra3Plads()
+        private void FindRestVindere()
         {
             foreach (var rute in Ruter)
             {
-                if (rute.HarVinder == false)
+                int index = 3;
+                while (rute.HarVinder == false && rute.Udtag(index) != null)
                 {
-                    if (rute.TredjePlads.Byder.Tredjepladser <= rute.TredjePlads.Byder.MaxAntalVogne)
+                    if (rute.Udtag(index).Byder.LedigeVogne > 0)
                     {
-                        rute.Vinder = rute.TredjePlads;
+                        rute.Vinder = rute.Udtag(index);
 
                         foreach (var byder in Byderne)
                         {
@@ -75,6 +106,46 @@ namespace Fynbus_Flexbus
                             }
                         }
                     }
+                    index++;
+                }
+            }
+        }
+
+        private void SorterRuter()
+        {
+            IComparer<Rute> sortering = new SorteringRute();
+
+            Ruter.Sort(sortering);
+        }
+
+        private void FindVinderFra3Plads()
+        {
+            TælTredjepladser();
+            foreach (var rute in Ruter)
+            {
+                if (rute.HarVinder == false)
+                {
+                    if (rute.TredjePlads != null)
+                    {
+                        if (rute.TredjePlads.Byder.Tredjepladser <= rute.TredjePlads.Byder.MaxAntalVogne)
+                        {
+                            if (rute.TredjePlads.Byder.LedigeVogne > 0)
+                            {
+                                rute.Vinder = rute.TredjePlads;
+
+                                foreach (var byder in Byderne)
+                                {
+                                    if (rute.Vinder.Byder.Navn == byder.Navn
+                                        && rute.Vinder.Byder.Firma == byder.Firma
+                                        && rute.Vinder.Byder.Mail == byder.Mail)
+                                    {
+                                        byder.LedigeVogne--;
+                                        UpdaterBydereITilbud();
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
 
             }
@@ -82,18 +153,21 @@ namespace Fynbus_Flexbus
             {
                 if (Ruter[i].HarVinder == false)
                 {
-                    if (Ruter[i].TredjePlads.Byder.LedigeVogne > 0)
+                    if (Ruter[i].TredjePlads != null)
                     {
-                        Ruter[i].Vinder = Ruter[i].TredjePlads;
-
-                        foreach (var byder in Byderne)
+                        if (Ruter[i].TredjePlads.Byder.LedigeVogne > 0)
                         {
-                            if (Ruter[i].Vinder.Byder.Navn == byder.Navn
-                                && Ruter[i].Vinder.Byder.Firma == byder.Firma
-                                && Ruter[i].Vinder.Byder.Mail == byder.Mail)
+                            Ruter[i].Vinder = Ruter[i].TredjePlads;
+
+                            foreach (var byder in Byderne)
                             {
-                                byder.LedigeVogne--;
-                                UpdaterBydereITilbud();
+                                if (Ruter[i].Vinder.Byder.Navn == byder.Navn
+                                    && Ruter[i].Vinder.Byder.Firma == byder.Firma
+                                    && Ruter[i].Vinder.Byder.Mail == byder.Mail)
+                                {
+                                    byder.LedigeVogne--;
+                                    UpdaterBydereITilbud();
+                                }
                             }
                         }
                     }
@@ -109,38 +183,50 @@ namespace Fynbus_Flexbus
                 {
                     if (rute.HarVinder == false)
                     {
-                        if (byder.Navn == rute.TredjePlads.Byder.Navn
+                        if (rute.TredjePlads != null)
+                        {
+                            if (byder.Navn == rute.TredjePlads.Byder.Navn
                             && byder.Firma == rute.TredjePlads.Byder.Firma
                             && byder.Mail == rute.TredjePlads.Byder.Mail)
-                        {
-                            byder.Førstepladser++;
+                            {
+                                byder.Førstepladser++;
+                            }
                         }
                     }
                 }
             }
+            UpdaterBydereITilbud();
         }
 
         private void FindVinderFra2Plads()
         {
+            TælAndenpladser();
             foreach (var rute in Ruter)
             {
                 if (rute.HarVinder == false)
                 {
-                    if (rute.AndenPlads.Byder.Andenpladser <= rute.AndenPlads.Byder.MaxAntalVogne)
+                    if (rute.AndenPlads != null)
                     {
-                        rute.Vinder = rute.AndenPlads;
-
-                        foreach (var byder in Byderne)
+                        if (rute.AndenPlads.Byder.Andenpladser <= rute.AndenPlads.Byder.MaxAntalVogne)
                         {
-                            if (rute.Vinder.Byder.Navn == byder.Navn
-                                && rute.Vinder.Byder.Firma == byder.Firma
-                                && rute.Vinder.Byder.Mail == byder.Mail)
+                            if (rute.AndenPlads.Byder.LedigeVogne > 0)
                             {
-                                byder.LedigeVogne--;
-                                UpdaterBydereITilbud();
+                                rute.Vinder = rute.AndenPlads;
+
+                                foreach (var byder in Byderne)
+                                {
+                                    if (rute.Vinder.Byder.Navn == byder.Navn
+                                        && rute.Vinder.Byder.Firma == byder.Firma
+                                        && rute.Vinder.Byder.Mail == byder.Mail)
+                                    {
+                                        byder.LedigeVogne--;
+                                        UpdaterBydereITilbud();
+                                    }
+                                }
                             }
                         }
                     }
+                    
                 }
                 
             }
@@ -148,18 +234,21 @@ namespace Fynbus_Flexbus
             {
                 if (Ruter[i].HarVinder == false)
                 {
-                    if (Ruter[i].AndenPlads.Byder.LedigeVogne > 0)
+                    if (Ruter[i].AndenPlads != null)
                     {
-                        Ruter[i].Vinder = Ruter[i].AndenPlads;
-
-                        foreach (var byder in Byderne)
+                        if (Ruter[i].AndenPlads.Byder.LedigeVogne > 0)
                         {
-                            if (Ruter[i].Vinder.Byder.Navn == byder.Navn
-                                && Ruter[i].Vinder.Byder.Firma == byder.Firma
-                                && Ruter[i].Vinder.Byder.Mail == byder.Mail)
+                            Ruter[i].Vinder = Ruter[i].AndenPlads;
+
+                            foreach (var byder in Byderne)
                             {
-                                byder.LedigeVogne--;
-                                UpdaterBydereITilbud();
+                                if (Ruter[i].Vinder.Byder.Navn == byder.Navn
+                                    && Ruter[i].Vinder.Byder.Firma == byder.Firma
+                                    && Ruter[i].Vinder.Byder.Mail == byder.Mail)
+                                {
+                                    byder.LedigeVogne--;
+                                    UpdaterBydereITilbud();
+                                }
                             }
                         }
                     }
@@ -175,33 +264,41 @@ namespace Fynbus_Flexbus
                 {
                     if (rute.HarVinder == false)
                     {
-                        if (byder.Navn == rute.AndenPlads.Byder.Navn
+                        if (rute.AndenPlads != null)
+                        {
+                            if (byder.Navn == rute.AndenPlads.Byder.Navn
                             && byder.Firma == rute.AndenPlads.Byder.Firma
                             && byder.Mail == rute.AndenPlads.Byder.Mail)
-                        {
-                            byder.Førstepladser++;
+                            {
+                                byder.Førstepladser++;
+                            }
                         }
                     }
                 }
             }
+            UpdaterBydereITilbud();
         }
 
         private void FindVinderFra1Plads()
         {
+            TælFørstePladser();
             foreach (var rute in Ruter)
             {
                 if (rute.FørstePlads.Byder.Førstepladser <= rute.FørstePlads.Byder.MaxAntalVogne)
                 {
-                    rute.Vinder = rute.FørstePlads;
-
-                    foreach (var byder in Byderne)
+                    if (rute.FørstePlads.Byder.LedigeVogne > 0)
                     {
-                        if (rute.Vinder.Byder.Navn == byder.Navn
-                            && rute.Vinder.Byder.Firma == byder.Firma
-                            && rute.Vinder.Byder.Mail == byder.Mail)
+                        rute.Vinder = rute.FørstePlads;
+
+                        foreach (var byder in Byderne)
                         {
-                            byder.LedigeVogne--;
-                            UpdaterBydereITilbud();
+                            if (rute.Vinder.Byder.Navn == byder.Navn
+                                && rute.Vinder.Byder.Firma == byder.Firma
+                                && rute.Vinder.Byder.Mail == byder.Mail)
+                            {
+                                byder.LedigeVogne--;
+                                UpdaterBydereITilbud();
+                            }
                         }
                     }
                 }
@@ -262,6 +359,7 @@ namespace Fynbus_Flexbus
                     }
                 }
             }
+            UpdaterBydereITilbud();
         }
 
         private void Import(string filPlaceringForTilbud, string filPlaceringForByder)

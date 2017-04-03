@@ -10,7 +10,11 @@ namespace Fynbus_Flexbus
     {
         public int Compare(Rute o1, Rute o2)
         {
-            if (o1.FørstePlads.ForskelTilNæste > o2.FørstePlads.ForskelTilNæste)
+            if (o1.FørstePlads.ForskelTilNæste == -1 || o2.FørstePlads.ForskelTilNæste == -1)
+            {
+                return 1;
+            }
+            else if (o1.FørstePlads.ForskelTilNæste > o2.FørstePlads.ForskelTilNæste)
             {
                 return -1;
             }

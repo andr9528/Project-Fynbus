@@ -9,9 +9,9 @@ namespace Tests
     public class ImportTests
     {
         //André's Stationær Import
-        //Import import = new Import(@"C:\Users\andre\Google Drev\Skole - Google Drev\EAL\Project Fynbus\Fynbus New Code\Fynbus Flexbus\TestFiler\14_FG5_Tilbudsblanket_tilpasset skabelon_annonymiseret i csv_format.csv", @"C:\Users\andre\Google Drev\Skole - Google Drev\EAL\Project Fynbus\Fynbus New Code\Fynbus Flexbus\TestFiler\4_FG5_Stamoplysninger_tilpasset skabelon_annonymiseret i csv_format.csv");
+        Import import = new Import(@"C:\Users\andre\Google Drev\Skole - Google Drev\EAL\Project Fynbus\Fynbus New Code\Fynbus Flexbus\TestFiler\14_FG5_Tilbudsblanket_tilpasset skabelon_annonymiseret i csv_format.csv", @"C:\Users\andre\Google Drev\Skole - Google Drev\EAL\Project Fynbus\Fynbus New Code\Fynbus Flexbus\TestFiler\4_FG5_Stamoplysninger_tilpasset skabelon_annonymiseret i csv_format.csv");
         //André's Bærbar Import
-        Import import = new Import(@"C:\Users\Andre\Google Drev\Skole - Google Drev\EAL\Project Fynbus\Fynbus New Code\Fynbus Flexbus\TestFiler\14_FG5_Tilbudsblanket_tilpasset skabelon_annonymiseret i csv_format.csv", @"C:\Users\Andre\Google Drev\Skole - Google Drev\EAL\Project Fynbus\Fynbus New Code\Fynbus Flexbus\TestFiler\4_FG5_Stamoplysninger_tilpasset skabelon_annonymiseret i csv_format.csv");
+        //Import import = new Import(@"C:\Users\Andre\Google Drev\Skole - Google Drev\EAL\Project Fynbus\Fynbus New Code\Fynbus Flexbus\TestFiler\14_FG5_Tilbudsblanket_tilpasset skabelon_annonymiseret i csv_format.csv", @"C:\Users\Andre\Google Drev\Skole - Google Drev\EAL\Project Fynbus\Fynbus New Code\Fynbus Flexbus\TestFiler\4_FG5_Stamoplysninger_tilpasset skabelon_annonymiseret i csv_format.csv");
 
         [TestMethod]
         public void TestImport1()

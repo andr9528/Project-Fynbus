@@ -12,6 +12,7 @@ namespace Fynbus_Flexbus
         public List<Tilbud> Tilbud = new List<Tilbud>();
         public List<Tilbud> Top3 = new List<Tilbud>();
 
+        public string Fejl { get; set; }
         public int RuteNummer { get; set; } // Garantivognsnummer
         public bool HarVinder
         {
@@ -31,24 +32,16 @@ namespace Fynbus_Flexbus
             {
                 UdtagTop3();
 
-                if (Top3.Count == 0)
-                {
-                    throw new Exception("Der er ingen tilbud på denne rute");
-                }
-
                 return Top3[0];
             } }
         public Tilbud AndenPlads { get
             {
                 UdtagTop3();
 
-                if (Top3.Count == 0)
-                {
-                    throw new Exception("Der er ingen tilbud på denne rute");
-                }
                 if (Top3.Count < 2)
                 {
-                    throw new Exception("Der er ingen anden plads på denne rute");
+                    Fejl = "Der er ingen anden plads på denne rute";
+                    return null;
                 }
 
                 return Top3[1];
@@ -57,13 +50,10 @@ namespace Fynbus_Flexbus
             {
                 UdtagTop3();
 
-                if (Top3.Count == 0)
-                {
-                    throw new Exception("Der er ingen tilbud på denne rute");
-                }
                 if (Top3.Count < 3)
                 {
-                    throw new Exception("Der er ingen tredje plads på denne rute");
+                    Fejl = "Der er ingen tredje plads på denne rute";
+                    return null;
                 }
 
                 return Top3[2];
@@ -102,7 +92,7 @@ namespace Fynbus_Flexbus
 
             for (int i = 0; i < Tilbud.Count; i++)
             {
-                if (i + 1 > Tilbud.Count)
+                if (i + 1 >= Tilbud.Count)
                 {
                     Tilbud[i].ForskelTilNæste = -1;
                 }
@@ -136,6 +126,19 @@ namespace Fynbus_Flexbus
                     Top3.Add(Tilbud[i]);
                 }
             }
+        }
+        public Tilbud Udtag(int index)
+        {
+            Tilbud retur = null;
+
+            IndstilForskelIPris();
+
+            if (index < Tilbud.Count)
+            {
+                retur = Tilbud[index];
+            }
+
+            return retur;
         }
 
     }
