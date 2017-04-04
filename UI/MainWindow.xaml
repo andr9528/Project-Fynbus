@@ -5,44 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="Auto" Width="250">
+        Title="MainWindow" Height="Auto" Width="1000">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="300"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="0" Grid.Row="0" Name="VælgStamolysninger" 
+        <Button Grid.Column="2" Grid.Row="0" Name="VælgStamolysninger" 
                 Click="VælgStamolysninger_Click" Content="Vælg Stamolysninger"/>
-        <Button Grid.Column="0" Grid.Row="2" Name="VælgTilbudsblanket" 
+        <Button Grid.Column="2" Grid.Row="1" Name="VælgTilbudsblanket" 
                 Click="VælgTilbudsblanket_Click" Content="Vælg Tilbudsblanket"/>
-        <Button Grid.Column="0" Grid.Row="4" Name="ImportOgFindVindere" 
+        <Button Grid.Column="2" Grid.Row="2" Name="ImportOgFindVindere" 
                 Click="ImportOgFindVindere_Click" Content="Import og Find Vinder"/>
-        <Button Grid.Column="0" Grid.Row="7" Name="VælgPlaceringTilEksport" 
+        <Button Grid.Column="2" Grid.Row="4" Name="VælgPlaceringTilEksport" 
                 Click="VælgPlaceringTilEksport_Click" Content="Vælg Placering til Eksport"/>
-        <Button Grid.Column="0" Grid.Row="9" Name="EksporterTilbudMedVindere" 
+        <Button Grid.Column="2" Grid.Row="6" Name="EksporterTilbudMedVindere" 
                 Click="EksporterTilbudMedVindere_Click" Content="Eksporter Resultat til CSV fil"/>
-        <Button Grid.Column="0" Grid.Row="11" Name="Debug" 
-                Click="Debug_Click" Content="Debug"/>
 
-        <TextBox Grid.Column="0" Grid.Row="1" Name="StamolysningerText" Width="200" IsReadOnly="True"></TextBox>
-        <TextBox Grid.Column="0" Grid.Row="3" Name="TilbudsblanketText" Width="200" IsReadOnly="True"></TextBox>
-        <TextBox Grid.Column="0" Grid.Row="5" Name="ImportOgFindVinderText" Width="200" IsReadOnly="True"></TextBox>
-        <TextBox Grid.Column="0" Grid.Row="8" Name="PlaceringEksportText" Width="200" IsReadOnly="True"></TextBox>
-        <TextBox Grid.Column="0" Grid.Row="10" Name="EksportResultatText" Width="200" IsReadOnly="True"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="0" Name="StamolysningerText" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="1" Name="TilbudsblanketText" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="2" Name="ImportOgFindVinderText" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="4" Name="PlaceringEksportText" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="5" Name="EksportFilnavnText" Width="200" IsReadOnly="False" Text="Indtast Navn på Fil Her" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="6" Name="EksportResultatText" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
 
+        <Grid Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Column="0" Grid.Row="1" Text="TilbudID -> Seqno" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="2" Text="RuteNr -> Garantivognsnummer" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="3" Text="TimePris -> Drifttimepris" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="4" Text="ByderNavn -> Navn" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="5" Text="TilbudID -> Seqno" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="6" Text="TilbudID -> Seqno" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="7" Text="TilbudID -> Seqno" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="8" Text="TilbudID -> Seqno" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+
+        </Grid>
+
+        <ListView Grid.Column="1" Grid.Row="3" SelectionChanged="DataGrid_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="TilbudID" Width="Auto" ></GridViewColumn>
+                    <GridViewColumn Header="RuteNr" Width="Auto"></GridViewColumn>
+                    <GridViewColumn Header="TimePris" Width="Auto"></GridViewColumn>
+                    <GridViewColumn Header="ByderNavn" Width="Auto"></GridViewColumn>
+                    <GridViewColumn Header="ByderFirma -> Firma" Width="Auto"></GridViewColumn>
+                    <GridViewColumn Header="ByderMail -> Bruger" Width="Auto"></GridViewColumn>
+                    <GridViewColumn Header="RutePrioritet -> Rutenummer prioritet" Width="Auto"></GridViewColumn>
+                    <GridViewColumn Header="ByderPrioritet -> Entreprenør prioritet" Width="Auto"></GridViewColumn>
+                    <GridViewColumn Header="VinderStatus" Width="Auto"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

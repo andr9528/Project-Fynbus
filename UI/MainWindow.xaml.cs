@@ -25,21 +25,11 @@ namespace UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool DebugMode = false;
         string filPlaceringForTilbud = "";
         string filPlaceringForByder = "";
         public MainWindow()
         {
             InitializeComponent();
-
-            if (DebugMode == true)
-            {
-                Debug.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Debug.Visibility = Visibility.Hidden;
-            }
         }
 
         private void VælgStamolysninger_Click(object sender, RoutedEventArgs e)
@@ -67,9 +57,10 @@ namespace UI
 
         }
 
-        private void Debug_Click(object sender, RoutedEventArgs e)
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
     }
 }
