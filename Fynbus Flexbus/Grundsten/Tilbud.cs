@@ -9,6 +9,7 @@ namespace Fynbus_Flexbus
     public class Tilbud
     {
         public string TilbudID { get; set; } // seqno
+        public bool VinderStatus { get; set; }
         public int RuteNummer { get; set; }
         public double TimePris { get; set; }
         public double ForskelTilNæste { get; set; } // værdien der indeholde time pris forskellen til det næste tilbud

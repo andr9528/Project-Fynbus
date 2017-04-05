@@ -60,8 +60,35 @@ namespace Fynbus_Flexbus
             FindVinderFra2Plads();
             FindVinderFra3Plads();
             FindRestVindere();
+
+            GemVinderStatus();
             
             SendListerTilLager();
+        }
+
+        private void GemVinderStatus()
+        {
+            foreach (Rute rute in Ruter)
+            {
+                foreach (Tilbud tilbud in rute.Tilbud)
+                {
+                    if (rute.HarVinder == true)
+                    {
+                        if (rute.Vinder.Byder == tilbud.Byder)
+                        {
+                            tilbud.VinderStatus = true;
+                        }
+                        else
+                        {
+                            tilbud.VinderStatus = false;
+                        }
+                    }
+                    else
+                    {
+                        tilbud.VinderStatus = false;
+                    }
+                }
+            }
         }
 
         private void TælTilbudPerByder()

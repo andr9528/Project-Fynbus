@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="Auto" Width="1000">
+        Title="MainWindow" Height="600" Width="1200">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -13,11 +13,10 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="300"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="600"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
@@ -28,17 +27,13 @@
                 Click="VælgTilbudsblanket_Click" Content="Vælg Tilbudsblanket"/>
         <Button Grid.Column="2" Grid.Row="2" Name="ImportOgFindVindere" 
                 Click="ImportOgFindVindere_Click" Content="Import og Find Vinder"/>
-        <Button Grid.Column="2" Grid.Row="4" Name="VælgPlaceringTilEksport" 
-                Click="VælgPlaceringTilEksport_Click" Content="Vælg Placering til Eksport"/>
-        <Button Grid.Column="2" Grid.Row="6" Name="EksporterTilbudMedVindere" 
-                Click="EksporterTilbudMedVindere_Click" Content="Eksporter Resultat til CSV fil"/>
-
-        <TextBox Grid.Column="1" Grid.Row="0" Name="StamolysningerText" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="1" Name="TilbudsblanketText" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="2" Name="ImportOgFindVinderText" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="4" Name="PlaceringEksportText" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="5" Name="EksportFilnavnText" Width="200" IsReadOnly="False" Text="Indtast Navn på Fil Her" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="6" Name="EksportResultatText" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+        <Button Grid.Column="2" Grid.Row="4" Name="GemTilbudMedVindere" 
+                Click="GemTilbudMedVindere_Click" Content="Gem Tilbud Med Vindere"/>
+        
+        <TextBox Grid.Column="1" Grid.Row="0" Name="StamolysningerText" Width="600" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="1" Name="TilbudsblanketText" Width="600" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="2" Name="ImportOgFindVinderText" Width="600" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="4" Name="GemTilbudMedVindereText" Width="600" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
 
         <Grid Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RowDefinitions>
@@ -53,17 +48,17 @@
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="0" Grid.Row="1" Text="TilbudID -> Seqno" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
-            <TextBox Grid.Column="0" Grid.Row="2" Text="RuteNr -> Garantivognsnummer" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
-            <TextBox Grid.Column="0" Grid.Row="3" Text="TimePris -> Drifttimepris" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
-            <TextBox Grid.Column="0" Grid.Row="4" Text="ByderNavn -> Navn" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
-            <TextBox Grid.Column="0" Grid.Row="5" Text="TilbudID -> Seqno" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
-            <TextBox Grid.Column="0" Grid.Row="6" Text="TilbudID -> Seqno" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
-            <TextBox Grid.Column="0" Grid.Row="7" Text="TilbudID -> Seqno" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
-            <TextBox Grid.Column="0" Grid.Row="8" Text="TilbudID -> Seqno" Width="200" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="1" Text="TilbudID -> Seqno" Width="300" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="2" Text="RuteNr -> Garantivognsnummer" Width="300" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="3" Text="TimePris -> Drifttimepris" Width="300" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="4" Text="ByderNavn -> Navn" Width="300" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="5" Text="ByderFirma -> Firma" Width="300" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="6" Text="ByderMail -> Bruger" Width="300" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="7" Text="RutePrioritet -> Rutenummer prioritet" Width="300" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="8" Text="ByderPrioritet -> Entreprenør prioritet" Width="300" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"></TextBox>
 
         </Grid>
 
@@ -74,10 +69,10 @@
                     <GridViewColumn Header="RuteNr" Width="Auto"></GridViewColumn>
                     <GridViewColumn Header="TimePris" Width="Auto"></GridViewColumn>
                     <GridViewColumn Header="ByderNavn" Width="Auto"></GridViewColumn>
-                    <GridViewColumn Header="ByderFirma -> Firma" Width="Auto"></GridViewColumn>
-                    <GridViewColumn Header="ByderMail -> Bruger" Width="Auto"></GridViewColumn>
-                    <GridViewColumn Header="RutePrioritet -> Rutenummer prioritet" Width="Auto"></GridViewColumn>
-                    <GridViewColumn Header="ByderPrioritet -> Entreprenør prioritet" Width="Auto"></GridViewColumn>
+                    <GridViewColumn Header="ByderFirma" Width="Auto"></GridViewColumn>
+                    <GridViewColumn Header="ByderMail" Width="Auto"></GridViewColumn>
+                    <GridViewColumn Header="RutePrioritet" Width="Auto"></GridViewColumn>
+                    <GridViewColumn Header="ByderPrioritet" Width="Auto"></GridViewColumn>
                     <GridViewColumn Header="VinderStatus" Width="Auto"></GridViewColumn>
                 </GridView>
             </ListView.View>
