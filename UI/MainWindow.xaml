@@ -62,20 +62,8 @@
 
         </Grid>
 
-        <ListView Grid.Column="1" Grid.Row="3" SelectionChanged="DataGrid_SelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="TilbudID" Width="Auto" ></GridViewColumn>
-                    <GridViewColumn Header="RuteNr" Width="Auto"></GridViewColumn>
-                    <GridViewColumn Header="TimePris" Width="Auto"></GridViewColumn>
-                    <GridViewColumn Header="ByderNavn" Width="Auto"></GridViewColumn>
-                    <GridViewColumn Header="ByderFirma" Width="Auto"></GridViewColumn>
-                    <GridViewColumn Header="ByderMail" Width="Auto"></GridViewColumn>
-                    <GridViewColumn Header="RutePrioritet" Width="Auto"></GridViewColumn>
-                    <GridViewColumn Header="ByderPrioritet" Width="Auto"></GridViewColumn>
-                    <GridViewColumn Header="VinderStatus" Width="Auto"></GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Grid.Column="1" Grid.Row="3" SelectionChanged="DataGrid_SelectionChanged" Name="View">
+            
+        </DataGrid>
     </Grid>
 </Window>

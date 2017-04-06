@@ -17,6 +17,7 @@ using System.IO;
 using System.Diagnostics;
 using Fynbus_Flexbus;
 using Microsoft.Win32;
+using System.Data;
 
 namespace UI
 {
@@ -27,6 +28,8 @@ namespace UI
     {
         Lager lager = Lager.HentUdgave();
         Logik logik;
+        List<Tilbud> tilbudene = new List<Tilbud>();
+
         string filPlaceringForTilbud = "";
         string filPlaceringForByder = "";
         public MainWindow()
@@ -66,6 +69,8 @@ namespace UI
             {
                 logik = new Logik(filPlaceringForTilbud, filPlaceringForByder);
                 ImportOgFindVinderText.Text = "Import og Udveldelse Fuldført, Se neden under";
+                UdtrækTilbud();
+                IndsætIndhold();
             }
             else
             {
@@ -84,10 +89,72 @@ namespace UI
 
             GemTilbudMedVindereText.Text = "Fil Skabt med ovenstående informationer";
         }
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) // skal være her for der ikke er en fejl, ved ikke hvorfor
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) 
         {
 
         }
-        
+        private void UdtrækTilbud()
+        {
+            foreach (var rute in lager.Ruter)
+            {
+                foreach (var tilbud in rute.Tilbud)
+                {
+                    if (tilbud.VinderStatus == true)
+                    {
+                        tilbudene.Add(tilbud);
+                    }
+                }
+            }
+            foreach (var rute in lager.Ruter)
+            {
+                foreach (var tilbud in rute.Tilbud)
+                {
+                    if (tilbud.VinderStatus == false)
+                    {
+                        tilbudene.Add(tilbud);
+                    }
+                }
+            }
+        }
+        private void IndsætIndhold()
+        {
+            DataTable view = new DataTable();
+            view.Columns.Add("TilbudID");
+            view.Columns.Add("RuteNr");
+            view.Columns.Add("TimePris");
+            view.Columns.Add("ByderNavn");
+            view.Columns.Add("ByderFirma");
+            view.Columns.Add("ByderMail");
+            view.Columns.Add("RutePrioritet");
+            view.Columns.Add("ByderPrioritet");
+            view.Columns.Add("VinderStatus");
+
+            foreach (var tilbud in tilbudene)
+            {
+                string vinderStatus = "";
+                if (tilbud.VinderStatus == true)
+                {
+                    vinderStatus = "Vandt";
+                }
+                else
+                {
+                    vinderStatus = "Tabte";
+                }
+                //string[] række = 
+                //    { tilbud.TilbudID, tilbud.RuteNummer.ToString(),
+                //    tilbud.TimePris.ToString(), tilbud.Byder.Navn,
+                //    tilbud.Byder.Firma, tilbud.Byder.Mail,
+                //    tilbud.RutePrioritet.ToString(), tilbud.ByderPrioritet.ToString(),
+                //    vinderStatus};
+
+                view.Rows.Add(tilbud.TilbudID, tilbud.RuteNummer.ToString(),
+                    tilbud.TimePris.ToString(), tilbud.Byder.Navn,
+                    tilbud.Byder.Firma, tilbud.Byder.Mail,
+                    tilbud.RutePrioritet.ToString(), tilbud.ByderPrioritet.ToString(),
+                    vinderStatus);
+                
+            }
+            View.ItemsSource = view.AsDataView();
+        }
     }
 }
