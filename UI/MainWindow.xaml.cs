@@ -156,5 +156,12 @@ namespace UI
             }
             View.ItemsSource = view.AsDataView();
         }
+
+        private void ÅbenManual_Click(object sender, RoutedEventArgs e)
+        {
+            string manual = "Manual.pdf";
+            string path = System.IO.Path.Combine(Environment.CurrentDirectory, manual);
+            Process.Start(path);
+        }
     }
 }
